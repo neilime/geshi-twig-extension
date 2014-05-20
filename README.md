@@ -29,16 +29,18 @@ Features
    * Highlight Javascript & display line numbers & use classes : `{% geshi 'javascript' line_numbers use_classes %}{"data": "test"}{% endgeshi %}`
 
 
-## Installation
+Installation
+------------
 
 Update your `composer.json`:
 
 ```json
 {
-    "require": {
+  "require": {
         "neilime/geshi-twig-extension": "1.*"
     }
 }
+```
 
 ## Usage
 
@@ -49,14 +51,12 @@ The Twig extension provides the `geshi` tag and filter support.
 Assumed that you are using [composer](http://getcomposer.org) autoloading.
 
 Adds the extension to the Twig environment:
-
 ```php
 $twig->addExtension(new \Twig\Extension\GeshiExtension());
 ```
 ### Twig Token Parser
 
-The Twig token parser provides the `geshi` tag
-
+The Twig token parser provides the `geshi` tag :
 ```php
 $twig->addTokenParser(new \Twig\TokenParser\GeshiTokenParser());
 ```
