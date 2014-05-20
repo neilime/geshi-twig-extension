@@ -1,0 +1,28 @@
+{
+    "name": "neilime/geshi-twig-extension",
+    "type": "library",
+    "description": "Twig extension to work with Geshi - Generic Syntax Highlighter rendering",
+    "keywords": ["twig", "geshi", "syntax highlighter"],
+    "license": "MIT",
+    "homepage": "http://neilime.github.io/geshi-twig-extension/",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Neilime",
+            "homepage": "https://github.com/neilime",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/neilime/zf2-twb-bundle/issues"
+    },
+    "require": {
+        "twig/twig": "1.*@stable",
+        "geshi/geshi": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "Twig": "src/"
+        }
+    }
+}

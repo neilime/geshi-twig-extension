@@ -1,0 +1,8 @@
+// line 1
+ob_start();
+echo "<?php
+echo \"test\";
+?>";
+$sSource = rtrim(ob_get_clean());
+$oGeshi = new GeSHi($sSource, 'php');
+echo $oGeshi->parse_code() . PHP_EOL;
