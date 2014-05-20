@@ -23,29 +23,6 @@ class GeshiTokenParserTest extends \Twig_Test_NodeTestCase
         $this->assertEquals($oBody, $oNode->getNode('body'));
     }
 
-    public function testGeshiPrepareBehavior()
-    {
-        $sBody = '   <?php' . PHP_EOL . 'echo "test";  ' . PHP_EOL . '?>  ';
-        $sBodyPrepared = '<?php' . PHP_EOL . 'echo "test";  ' . PHP_EOL . '?>  ';
-
-        ob_start();
-        echo $sBody;
-        $sContent = ob_get_clean();
-        $aMatches = null;
-        preg_match("/^\s*/", $sContent, $aMatches);
-        $aLines = explode("\n", $sContent);
-        $sContent = preg_replace('/^' . $aMatches[0] . '/', '', $aLines);
-        $sContent = join("\n", $sContent);
-
-        //Assert prepared content looks right
-        $this->assertEquals($sBodyPrepared, $sContent);
-
-        //Assert Geshi output
-        $oEngine = new \Twig\Extension\GeshiEngine();
-
-        $this->assertStringEqualsFile(__DIR__ . '/../../../_files/expected/prepare-behavior.html', $oEngine->transform($sContent, 'php'));
-    }
-
     /**
      * Test that the generated code looks as expected
      *
@@ -74,6 +51,9 @@ class GeshiTokenParserTest extends \Twig_Test_NodeTestCase
 
         $oBody = new \Twig_Node(array(new \Twig_Node_Text('<?php' . PHP_EOL . 'echo "test";' . PHP_EOL . '?>', 1)));
         $oNode = new \Twig\Node\GeshiNode($aParams, $oBody, 1, 'geshi');
+
+        $compiler = $this->getCompiler(null);
+        $compiler->compile($oNode);
 
         $aTests['text_with_leading_indent'] = array($oNode, file_get_contents(__DIR__ . '/../../../_files/expected/text-with-leading-indent.html'));
 
