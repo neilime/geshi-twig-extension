@@ -1,9 +1,9 @@
 Geshi Twig Extension
 =======================
 
-[![Build Status](https://travis-ci.org/neilime/zf2-twb-bundle.png?branch=master)](https://travis-ci.org/neilime/zf2-twb-bundle)
-[![Latest Stable Version](https://poser.pugx.org/neilime/zf2-twb-bundle/v/stable.png)](https://packagist.org/packages/neilime/zf2-twb-bundle)
-[![Total Downloads](https://poser.pugx.org/neilime/zf2-twb-bundle/downloads.png)](https://packagist.org/packages/neilime/zf2-twb-bundle)
+[![Build Status](https://travis-ci.org/neilime/geshi-twig-extension.png?branch=master)](https://travis-ci.org/neilime/geshi-twig-extension)
+[![Latest Stable Version](https://poser.pugx.org/neilime/geshi-twig-extension/v/stable.png)](https://packagist.org/packages/neilime/geshi-twig-extension)
+[![Total Downloads](https://poser.pugx.org/neilime/geshi-twig-extension/downloads.png)](https://packagist.org/packages/neilime/geshi-twig-extension)
 
 NOTE : If you want to contribute don't hesitate, I'll review any PR.
 
