@@ -1,11 +1,20 @@
 language: php
-before_script: composer install --dev
-php:
-  - "5.4"
-  - "5.3"
 
-notifications:
-  hipchat: 6b3173ebb0aac4873aeda0310dc8c7@Kitchen Sink
-  email:
-      recipients:
-        - gunnar@aptoma.com
+php:
+ - "5.3"
+ - "5.4"
+
+before_install:
+# Set the GitHub OAuth token to make use of the 6000 per hour rate limit
+ - mkdir -p ~/.composer
+ - cp .travis.composer.json ~/.composer/config.json
+# Update composer
+ - composer self-update
+# Install project
+ - composer install --dev -o
+
+before_script:
+ - cd tests
+ 
+script:
+ - phpunit -d max_execution_time=0 
