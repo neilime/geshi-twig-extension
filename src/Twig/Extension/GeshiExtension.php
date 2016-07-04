@@ -11,9 +11,7 @@ class GeshiExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            'geshi' => new \Twig_Filter_Method(
-                    $this, 'parseGeshi', array('is_safe' => array('html'))
-            )
+            new \Twig_SimpleFilter('geshi', array($this, 'parseGeshi'), array('is_safe' => array('html'))),
         );
     }
 
