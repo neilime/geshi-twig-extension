@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Geshi-twig-extension by neilime</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Geshi-twig-extension</h1>
+      <h2 class="project-tagline">Twig extension for GeSHi - Generic Syntax Highlighter rendering</h2>
+      <a href="https://github.com/neilime/geshi-twig-extension" class="btn">View on GitHub</a>
+      <a href="https://github.com/neilime/geshi-twig-extension/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/neilime/geshi-twig-extension/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="geshi-twig-extension" class="anchor" href="#geshi-twig-extension" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Geshi Twig Extension</h1>
+
+<p><a href="https://travis-ci.org/neilime/geshi-twig-extension"><img src="https://travis-ci.org/neilime/geshi-twig-extension.png?branch=master" alt="Build Status"></a>
+<a href="https://packagist.org/packages/neilime/geshi-twig-extension"><img src="https://poser.pugx.org/neilime/geshi-twig-extension/v/stable.png" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/neilime/geshi-twig-extension"><img src="https://poser.pugx.org/neilime/geshi-twig-extension/downloads.png" alt="Total Downloads"></a></p>
+
+<p>NOTE : If you want to contribute don't hesitate, I'll review any PR.</p>
+
+<h2>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Introduction</h2>
+
+<p>Twig extension for <a href="http://qbnz.com/highlighter/index.php">GeSHi - Generic Syntax Highlighter rendering</a>.</p>
+
+<h2>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributing</h2>
+
+<p>If you wish to contribute, please read both the <a href="CONTRIBUTING.md">CONTRIBUTING.md</a> file.</p>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li>
+<p>Filter support :</p>
+
+<ul>
+<li>Highlight PHP : <code>{{ "'&lt;?php\necho \'test\';\n?&gt;'|geshi('php') }}</code>
+</li>
+<li>Highlight PHP &amp; use classes : <code>{{ "'&lt;?php\necho \'test\';\n?&gt;'|geshi('php',true) }}</code>
+</li>
+</ul>
+</li>
+<li>
+<p>Tag support :</p>
+
+<ul>
+<li>Highlight Javascript : <code>{% geshi 'javascript' %}{"data": "test"}{% endgeshi %}</code>
+</li>
+<li>Highlight Javascript &amp; display line numbers &amp; use classes : <code>{% geshi 'javascript' line_numbers use_classes %}{"data": "test"}{% endgeshi %}</code>
+</li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Update your <code>composer.json</code>:</p>
+
+<div class="highlight highlight-source-json"><pre>{
+  <span class="pl-s"><span class="pl-pds">"</span>require<span class="pl-pds">"</span></span>: {
+        <span class="pl-s"><span class="pl-pds">"</span>neilime/geshi-twig-extension<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>1.*<span class="pl-pds">"</span></span>
+    }
+}</pre></div>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<h3>
+<a id="twig-extension" class="anchor" href="#twig-extension" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Twig Extension</h3>
+
+<p>The Twig extension provides the <code>geshi</code> tag and filter support.</p>
+
+<p>Assumed that you are using <a href="http://getcomposer.org">composer</a> autoloading.</p>
+
+<p>Adds the extension to the Twig environment:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$twig</span><span class="pl-k">-&gt;</span>addExtension(<span class="pl-k">new</span> <span class="pl-c1">\Twig\Extension\</span><span class="pl-c1">GeshiExtension</span>());</span></pre></div>
+
+<h3>
+<a id="twig-token-parser" class="anchor" href="#twig-token-parser" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Twig Token Parser</h3>
+
+<p>The Twig token parser provides the <code>geshi</code> tag :</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$twig</span><span class="pl-k">-&gt;</span>addTokenParser(<span class="pl-k">new</span> <span class="pl-c1">\Twig\TokenParser\</span><span class="pl-c1">GeshiTokenParser</span>());</span></pre></div>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/neilime/geshi-twig-extension">Geshi-twig-extension</a> is maintained by <a href="https://github.com/neilime">neilime</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
