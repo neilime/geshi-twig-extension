@@ -5,7 +5,7 @@
     "keywords": ["twig", "geshi", "syntax highlighter"],
     "license": "MIT",
     "homepage": "http://neilime.github.io/geshi-twig-extension/",
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "authors": [
         {
             "name": "Neilime",
@@ -18,7 +18,7 @@
     },
     "require": {
         "twig/twig": "1.*@stable",
-        "geshi/geshi": "dev-master"
+        "easybook/geshi": "1.*@stable"
     },
     "autoload": {
         "psr-0": {
