@@ -35,7 +35,7 @@ class GeshiExtension extends \Twig_Extension
      */
     public function getTokenParsers()
     {
-        return array(new \Twig\TokenParser\GeshiTokenParser());
+        return array();
     }
 
     /**

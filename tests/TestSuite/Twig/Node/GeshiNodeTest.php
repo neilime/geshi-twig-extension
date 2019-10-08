@@ -2,12 +2,11 @@
 
 namespace TestSuite\Twig\TokenParser;
 
-class GeshiTokenParserTest extends \Twig_Test_NodeTestCase
+class GeshiNodeTest extends \Twig_Test_NodeTestCase
 {
 
     public function testConstructor()
     {
-
         $aParams = array(
             'language' => 'php',
             'line_numbers' => false,
