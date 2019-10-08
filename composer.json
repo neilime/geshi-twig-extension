@@ -24,5 +24,8 @@
         "psr-0": {
             "Twig": "src/"
         }
+    },
+    "scripts": {
+        "test:ci": "cd tests && phpunit -d max_execution_time=0 --coverage-text --coverage-clover ../build/logs/clover.xml --coverage-html ../build/coverage/ && cd .."
     }
 }
