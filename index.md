@@ -42,15 +42,15 @@ echo \'test\';
  * Tag support :
    * Highlight Javascript :
    ```twig
-   {% raw %}{% geshi 'javascript' %}{% raw %}
+   {% raw %}{% geshi 'javascript' %}{% endraw %}
        {"data": "test"}
-   {% raw %}{% endgeshi %}{% raw %}
+   {% raw %}{% endgeshi %}{% endraw %}
    ```
    * Highlight Javascript & display line numbers & use classes :
    ```twig
-   {% raw %}{% geshi 'javascript' line_numbers use_classes %}{% raw %}
+   {% raw %}{% geshi 'javascript' line_numbers use_classes %}{% endraw %}
        {"data": "test"}
-   {% raw %}{% endgeshi %}{% raw %}
+   {% raw %}{% endgeshi %}{% endraw %}
    ```
 
 
