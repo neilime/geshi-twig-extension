@@ -15,7 +15,7 @@ class GeshiTokenParserTest extends \Twig_Test_NodeTestCase
             'class' => false,
             'id' => false
         );
-        $sTest = '<?php' . PHP_EOL . 'echo "test";' . PHP_EOL . '?>';
+        $sTest = '<?php' . "\n" . 'echo "test";' . "\n" . '?>';
 
         $oBody = new \Twig_Node(array(new \Twig_Node_Text($sTest, 1)));
         $oNode = new \Twig\Node\GeshiNode($aParams, $oBody, 1, 'geshi');
@@ -23,14 +23,16 @@ class GeshiTokenParserTest extends \Twig_Test_NodeTestCase
         $this->assertEquals($oBody, $oNode->getNode('body'));
     }
 
+    
     /**
      * Test that the generated code looks as expected
      *
      * @dataProvider getTests
      */
-    public function testCompile($oNode, $source, $environment = null)
+    public function testCompile($oNode, $source, $environment = null, $isPattern = false)
     {
-        parent::testCompile($oNode, $source, $environment);
+        $source = str_replace("\r\n", "\n", $source);
+        parent::testCompile($oNode, $source, $environment, $isPattern);
     }
 
     public function getTests()
@@ -44,18 +46,24 @@ class GeshiTokenParserTest extends \Twig_Test_NodeTestCase
             'id' => false
         );
 
-        $oBody = new \Twig_Node(array(new \Twig_Node_Text('<?php' . PHP_EOL . 'echo "test";  ' . PHP_EOL . '?> ', 1)));
+        $oBody = new \Twig_Node(array(new \Twig_Node_Text('<?php' . "\n" . 'echo "test";  ' . "\n" . '?> ', 1)));
         $oNode = new \Twig\Node\GeshiNode($aParams, $oBody, 1, 'geshi');
 
-        $aTests['simple_text'] = array($oNode, file_get_contents(__DIR__ . '/../../../_files/expected/simple-text.html'));
+        $aTests['simple_text'] = array(
+            $oNode, 
+            str_replace("\r\n", "\n", file_get_contents(__DIR__ . '/../../../_files/expected/simple-text.html'))
+        );
 
-        $oBody = new \Twig_Node(array(new \Twig_Node_Text('<?php' . PHP_EOL . 'echo "test";' . PHP_EOL . '?>', 1)));
+        $oBody = new \Twig_Node(array(new \Twig_Node_Text('<?php' . "\n" . 'echo "test";' . "\n" . '?>', 1)));
         $oNode = new \Twig\Node\GeshiNode($aParams, $oBody, 1, 'geshi');
 
         $compiler = $this->getCompiler(null);
         $compiler->compile($oNode);
 
-        $aTests['text_with_leading_indent'] = array($oNode, file_get_contents(__DIR__ . '/../../../_files/expected/text-with-leading-indent.html'));
+        $aTests['text_with_leading_indent'] = array(
+            $oNode, 
+            str_replace("\r\n", "\n", file_get_contents(__DIR__ . '/../../../_files/expected/text-with-leading-indent.html'))
+        );
 
         return $aTests;
     }

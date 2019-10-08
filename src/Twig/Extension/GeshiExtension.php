@@ -26,7 +26,8 @@ class GeshiExtension extends \Twig_Extension
         if ($bUseClasses) {
             $oGeshi->enable_classes();
         }
-        return $oGeshi->parse_code();
+        $sCode = $oGeshi->parse_code();
+        return $sCode;
     }
 
     /**

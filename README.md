@@ -2,6 +2,7 @@ Geshi Twig Extension
 =======================
 
 [![Build Status](https://travis-ci.org/neilime/geshi-twig-extension.png?branch=master)](https://travis-ci.org/neilime/geshi-twig-extension)
+[![Coverage Status](https://coveralls.io/repos/github/neilime/geshi-twig-extension/badge.svg)](https://coveralls.io/github/neilime/geshi-twig-extension)
 [![Latest Stable Version](https://poser.pugx.org/neilime/geshi-twig-extension/v/stable.png)](https://packagist.org/packages/neilime/geshi-twig-extension)
 [![Total Downloads](https://poser.pugx.org/neilime/geshi-twig-extension/downloads.png)](https://packagist.org/packages/neilime/geshi-twig-extension)
 
