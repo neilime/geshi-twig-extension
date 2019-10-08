@@ -1,22 +1,25 @@
 language: php
 
-php:
- - "5.3"
- - '5.5'
- - '5.6'
- - '7.0'
+sudo: false
+
+matrix:
+  include:
+  - php: '7.2'
+  - php: '7.3'
+    env:
+    - EXECUTE_AFTER_SCRIPT=true
+
+
+cache:
+  directories:
+  - "$HOME/.composer/cache"
 
 before_install:
-# Set the GitHub OAuth token to make use of the 6000 per hour rate limit
- - mkdir -p ~/.composer
- - cp .travis.composer.json ~/.composer/config.json
-# Update composer
- - composer self-update
-# Install project
- - composer install --dev -o
+- travis_retry composer self-update
+- travis_retry composer update --prefer-dist --no-interaction --prefer-stable --no-suggest
 
-before_script:
- - cd tests
- 
 script:
- - phpunit -d max_execution_time=0 
+- composer test:ci
+
+after_script:
+- if [[ $EXECUTE_AFTER_SCRIPT == 'true' ]]; then bash <(curl -s https://gist.githubusercontent.com/neilime/769d733c52acdecea8d2548fb3aca3ff/raw/travis_ci_php_publish_build.sh);fi
