@@ -17,6 +17,7 @@
         "issues": "https://github.com/neilime/zf2-twb-bundle/issues"
     },
     "require": {
+        "php": "^7.2",
         "twig/twig": "^2.12",
         "easybook/geshi": "^1.0"
     },
