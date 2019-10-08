@@ -38,12 +38,13 @@ class GeshiTokenParserTest extends \Twig_Test_NodeTestCase
     public function getTests()
     {
         $aTests = array();
+
         $aParams = array(
             'language' => 'php',
-            'line_numbers' => false,
-            'use_classes' => false,
-            'class' => false,
-            'id' => false
+            'line_numbers' => true,
+            'use_classes' => true,
+            'class' => true,
+            'id' => true
         );
 
         $oBody = new \Twig_Node(array(new \Twig_Node_Text('<?php' . "\n" . 'echo "test";  ' . "\n" . '?> ', 1)));
