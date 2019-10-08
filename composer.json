@@ -17,8 +17,8 @@
         "issues": "https://github.com/neilime/zf2-twb-bundle/issues"
     },
     "require": {
-        "twig/twig": "1.*@stable || 2.12",
-        "easybook/geshi": "1.*@stable"
+        "twig/twig": "^2.12",
+        "easybook/geshi": "^1.0"
     },
     "autoload": {
         "psr-0": {
