@@ -33,14 +33,10 @@ Features
 Installation
 ------------
 
-Update your `composer.json`:
+Add this project in via composer require :
 
-```json
-{
-  "require": {
-        "neilime/geshi-twig-extension": "1.*"
-    }
-}
+```bash
+$ composer require neilime/geshi-twig-extension
 ```
 
 ## Usage
@@ -49,7 +45,7 @@ Update your `composer.json`:
 
 The Twig extension provides the `geshi` tag and filter support.
 
-Assumed that you are using [composer](http://getcomposer.org) autoloading.
+Assumed that you are using  autoloading.
 
 Adds the extension to the Twig environment:
 ```php
@@ -61,3 +57,6 @@ The Twig token parser provides the `geshi` tag :
 ```php
 $twig->addTokenParser(new \Twig\TokenParser\GeshiTokenParser());
 ```
+
+[Code coverage](https://coveralls.io/github/neilime/geshi-twig-extension)
+------------
