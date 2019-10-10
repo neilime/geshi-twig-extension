@@ -1,0 +1,8 @@
+title: Geshi-twig-extension
+description: Twig extension for GeSHi - Generic Syntax Highlighter rendering
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-slate
+
+gems:
+  - jekyll-mentions
