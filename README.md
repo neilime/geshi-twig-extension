@@ -8,7 +8,7 @@ Geshi Twig Extension
 [![License](https://poser.pugx.org/neilime/geshi-twig-extension/license)](https://packagist.org/packages/neilime/geshi-twig-extension)
 [![Beerpay](https://beerpay.io/neilime/geshi-twig-extension/badge.svg)](https://beerpay.io/neilime/geshi-twig-extension) 
 
-📢 Twig extension for [GeSHi - Generic Syntax Highlighter rendering](http://qbnz.com/highlighter/index.php).
+📢 [Twig](https://twig.symfony.com) extension for [GeSHi - Generic Syntax Highlighter rendering](http://qbnz.com/highlighter/index.php).
 
 # Helping Project
 
