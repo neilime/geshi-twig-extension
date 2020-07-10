@@ -18,7 +18,7 @@
     },
     "require": {
         "php": "^7.2",
-        "twig/twig": "^2.12",
+        "twig/twig": "^2.13",
         "easybook/geshi": "^1.0"
     },
     "require-dev": {
