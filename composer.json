@@ -1,41 +1,58 @@
 {
-    "name": "neilime/geshi-twig-extension",
-    "type": "library",
-    "description": "Twig extension to work with Geshi - Generic Syntax Highlighter rendering",
-    "keywords": ["twig", "geshi", "syntax highlighter"],
-    "license": "MIT",
-    "homepage": "http://neilime.github.io/geshi-twig-extension/",
-    "minimum-stability": "stable",
-    "authors": [
-        {
-            "name": "Neilime",
-            "homepage": "https://github.com/neilime",
-            "role": "Developer"
-        }
-    ],
-    "support": {
-        "issues": "https://github.com/neilime/zf2-twb-bundle/issues"
+  "name": "neilime/geshi-twig-extension",
+  "type": "library",
+  "description": "Twig extension to work with Geshi - Generic Syntax Highlighter rendering",
+  "keywords": [
+    "twig",
+    "geshi",
+    "syntax highlighter"
+  ],
+  "license": "MIT",
+  "homepage": "http://neilime.github.io/geshi-twig-extension/",
+  "minimum-stability": "stable",
+  "authors": [
+    {
+      "name": "Neilime",
+      "homepage": "https://github.com/neilime",
+      "role": "Developer"
     },
-    "require": {
-        "php": "^7.2",
-        "twig/twig": "^3.10",
-        "easybook/geshi": "^1.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^8.5.38"
-    },
-    "autoload": {
-        "psr-4": {
-            "Twig\\": "src/Twig"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "TestSuite\\": "tests/TestSuite"
-        }
-    },
-    "scripts": {
-        "test": "cd tests && phpunit -d max_execution_time=0 && cd ..",
-        "test:ci": "cd tests && phpunit -d max_execution_time=0 --coverage-text --coverage-clover ../build/logs/clover.xml --coverage-html ../build/coverage/ && cd .."
+    {
+      "name": "ESCEMI",
+      "homepage": "https://github.com/escemi-tech",
+      "role": "Developer"
     }
+  ],
+  "support": {
+    "issues": "https://github.com/neilime/geshi-twig-extension/issues"
+  },
+  "autoload": {
+    "psr-4": {
+      "Twig\\": "src/Twig"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "TestSuite\\": "tests/TestSuite"
+    }
+  },
+  "require": {
+    "php": "^7.2",
+    "twig/twig": "^3.10",
+    "easybook/geshi": "^1.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.5.38"
+  },
+  "scripts": {
+    "test": "phpunit --colors --configuration tests/phpunit.xml",
+    "test:ci": "@test -d pcov.enabled=1 -d max_execution_time=0 --coverage-text --coverage-clover ./build/logs/clover.xml --coverage-html ./build/coverage/",
+    "php-cs-fixer": "@php-cs-fixer:fix --dry-run",
+    "php-cs-fixer:fix": "tools/vendor/bin/php-cs-fixer fix --show-progress=dots --diff --config=.php-cs-fixer.dist.php",
+    "stan": "tools/vendor/bin/phpstan analyse --level 5 src",
+    "ci": [
+      "@php-cs-fixer",
+      "@stan",
+      "@test:ci"
+    ]
+  }
 }

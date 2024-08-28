@@ -7,7 +7,6 @@ namespace Twig\Node;
  */
 class GeshiNode extends \Twig_Node
 {
-
     /**
      * Constructor
      * @param array $aParams
@@ -45,5 +44,4 @@ class GeshiNode extends \Twig_Node
         }
         $oCompiler->write('echo $oGeshi->parse_code() . PHP_EOL;' . "\n");
     }
-
 }

@@ -1,26 +1,43 @@
-Geshi Twig Extension
-=======================
+<p align="center">
+  <a href="https://neilime.github.io/geshi-twig-extension" target="_blank"><img src="https://repository-images.githubusercontent.com/19935239/628f1a00-eb4f-11e9-848a-0d9aa0369eee" width="400"></a>
+  <h1 align="center">Geshi Twig Extension</h1>
+</p>
 
-[![Build Status](https://travis-ci.org/neilime/geshi-twig-extension.svg?branch=master)](https://travis-ci.org/neilime/geshi-twig-extension)
-[![Coverage Status](https://coveralls.io/repos/github/neilime/geshi-twig-extension/badge.svg)](https://coveralls.io/github/neilime/geshi-twig-extension)
+[![Continuous Integration](https://github.com/neilime/geshi-twig-extension/actions/workflows/main-ci.yml/badge.svg)](https://github.com/neilime/geshi-twig-extension/actions/workflows/main-ci.yml)
+[![codecov](https://codecov.io/gh/neilime/geshi-twig-extension/branch/main/graph/badge.svg?token=eMuwgNub7Z)](https://codecov.io/gh/neilime/geshi-twig-extension)
 [![Latest Stable Version](https://poser.pugx.org/neilime/geshi-twig-extension/v/stable)](https://packagist.org/packages/neilime/geshi-twig-extension)
 [![Total Downloads](https://poser.pugx.org/neilime/geshi-twig-extension/downloads)](https://packagist.org/packages/neilime/geshi-twig-extension)
 [![License](https://poser.pugx.org/neilime/geshi-twig-extension/license)](https://packagist.org/packages/neilime/geshi-twig-extension)
-[![Beerpay](https://beerpay.io/neilime/geshi-twig-extension/badge.svg)](https://beerpay.io/neilime/geshi-twig-extension) 
+[![Sponsor](https://img.shields.io/badge/%E2%9D%A4-Sponsor-ff69b4)](https://github.com/sponsors/neilime)
 
-📢 [Twig](https://twig.symfony.com) extension for [GeSHi - Generic Syntax Highlighter rendering](http://qbnz.com/highlighter/index.php).
+📢 **Geshi Twig Extension** is a [Twig](https://twig.symfony.com) extension for [GeSHi - Generic Syntax Highlighter rendering](http://qbnz.com/highlighter/index.php).
 
-# Helping Project
+```twig
+{{ '<?php\necho \'test\';\n?>' | geshi('php') }}
+```
 
-❤️ If this project helps you reduce time to develop and/or you want to help the maintainer of this project, you can support him on [![Beerpay](https://beerpay.io/neilime/geshi-twig-extension/badge.svg)](https://beerpay.io/neilime/php-css-lint) Thank you !
+```twig
+{% geshi 'javascript' %}
+    {"data": "test"}
+{% endgeshi %}
+```
 
-# Contributing
+## Helping Project
+
+❤️ If this project helps you reduce time to develop and/or you want to help the maintainer of this project. You can [sponsor](https://github.com/sponsors/neilime) him. Thank you !
+
+## Contributing
 
 👍 If you wish to contribute to this project, please read the [CONTRIBUTING.md](CONTRIBUTING.md) file. Note: If you want to contribute don't hesitate, I'll review any PR.
 
-# Documentation
+## Documentation
 
-1. [Installation](https://github.com/neilime/geshi-twig-extension/wiki/Installation)
-2. [Usage](https://github.com/neilime/geshi-twig-extension/wiki/Usage)
-3. [Code Coverage](https://coveralls.io/github/neilime/geshi-twig-extension)
-4. [PHP Doc](https://neilime.github.io/geshi-twig-extension/phpdoc)
+### [Installation](https://neilime.github.io/geshi-twig-extension/installation)
+
+### [Usage](https://neilime.github.io/geshi-twig-extension/usage)
+
+### [Code Coverage](https://codecov.io/gh/neilime/geshi-twig-extension)
+
+### [PHP Doc](https://neilime.github.io/geshi-twig-extension/phpdoc)
+
+### [Development](https://neilime.github.io/geshi-twig-extension/development)

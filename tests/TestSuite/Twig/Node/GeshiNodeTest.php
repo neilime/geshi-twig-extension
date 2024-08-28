@@ -4,7 +4,6 @@ namespace TestSuite\Twig\TokenParser;
 
 class GeshiNodeTest extends \Twig_Test_NodeTestCase
 {
-
     public function testConstructor()
     {
         $aParams = array(
@@ -22,7 +21,7 @@ class GeshiNodeTest extends \Twig_Test_NodeTestCase
         $this->assertEquals($oBody, $oNode->getNode('body'));
     }
 
-    
+
     /**
      * Test that the generated code looks as expected
      *
@@ -50,7 +49,7 @@ class GeshiNodeTest extends \Twig_Test_NodeTestCase
         $oNode = new \Twig\Node\GeshiNode($aParams, $oBody, 1, 'geshi');
 
         $aTests['simple_text'] = array(
-            $oNode, 
+            $oNode,
             str_replace("\r\n", "\n", file_get_contents(__DIR__ . '/../../../_files/expected/simple-text.html'))
         );
 
@@ -61,11 +60,10 @@ class GeshiNodeTest extends \Twig_Test_NodeTestCase
         $compiler->compile($oNode);
 
         $aTests['text_with_leading_indent'] = array(
-            $oNode, 
+            $oNode,
             str_replace("\r\n", "\n", file_get_contents(__DIR__ . '/../../../_files/expected/text-with-leading-indent.html'))
         );
 
         return $aTests;
     }
-
 }

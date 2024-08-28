@@ -4,7 +4,6 @@ namespace Twig\Extension;
 
 class GeshiExtension extends \Twig_Extension
 {
-
     /**
      * @return array
      */
@@ -45,5 +44,4 @@ class GeshiExtension extends \Twig_Extension
     {
         return 'geshi';
     }
-
 }
