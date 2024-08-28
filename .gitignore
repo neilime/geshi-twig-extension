@@ -1,4 +1,6 @@
-/nbproject/private/
 /nbproject/
-/vendor/
-/composer.lock
+/vendor
+/tools/vendor
+composer.lock
+tests/.phpunit.cache
+build/

@@ -4,21 +4,23 @@ namespace TestSuite\Twig\Extension;
 
 class GeshiExtensionTest extends \PHPUnit\Framework\TestCase
 {
-
     protected $geshiExtension;
 
-    protected function setUp(): void {
+    protected function setUp(): void
+    {
         $this->geshiExtension = new \Twig\Extension\GeshiExtension();
     }
 
-    public function testGetNameReturnExtensionName(){
+    public function testGetNameReturnExtensionName()
+    {
         $this->assertEquals(
-            'geshi', 
+            'geshi',
             $this->geshiExtension->getName()
         );
     }
 
-    public function testParseGeshiWithClassesEnabled(){
+    public function testParseGeshiWithClassesEnabled()
+    {
         $sTest = '
             <?php
                 echo \'test\';
@@ -29,7 +31,7 @@ class GeshiExtensionTest extends \PHPUnit\Framework\TestCase
             '            <span class="kw2">&lt;?php</span>'. "\n" .
             '                <span class="kw1">echo</span> <span class="st_h">\'test\'</span><span class="sy0">;</span>'. "\n" .
             '            <span class="sy1">?&gt;</span>'. "\n" .
-            '&nbsp;</pre>', 
+            '&nbsp;</pre>',
             $this->geshiExtension->parseGeshi($sTest, 'php', true)
         );
     }
@@ -37,7 +39,6 @@ class GeshiExtensionTest extends \PHPUnit\Framework\TestCase
 
     public function testParseGeshiThroughTwigTemplate()
     {
-
         $sTest = '
             <?php
                 echo \'test\';
@@ -54,7 +55,7 @@ class GeshiExtensionTest extends \PHPUnit\Framework\TestCase
             '            <span style="color: #000000; font-weight: bold;">&lt;?php</span>'. "\n" .
             '                <span style="color: #b1b100;">echo</span> <span style="color: #0000ff;">\'test\'</span><span style="color: #339933;">;</span>'. "\n" .
             '            <span style="color: #000000; font-weight: bold;">?&gt;</span>'. "\n" .
-            '&nbsp;</pre>', 
+            '&nbsp;</pre>',
             $oTemplate->render(array())
         );
 
@@ -69,11 +70,8 @@ class GeshiExtensionTest extends \PHPUnit\Framework\TestCase
             '            <span style="color: #000000; font-weight: bold;">&lt;?php</span>'. "\n" .
             '                <span style="color: #b1b100;">echo</span> <span style="color: #0000ff;">\'test\'</span><span style="color: #339933;">;</span>'. "\n" .
             '            <span style="color: #000000; font-weight: bold;">?&gt;</span>'. "\n" .
-            '&nbsp;</pre>', 
+            '&nbsp;</pre>',
             $oTemplate->render(array('content' => $sTest))
         );
     }
-
-    
-
 }
