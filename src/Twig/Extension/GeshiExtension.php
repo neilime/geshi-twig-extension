@@ -2,39 +2,44 @@
 
 namespace Twig\Extension;
 
-class GeshiExtension extends \Twig_Extension
+use GeSHi;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
+
+class GeshiExtension extends AbstractExtension
 {
     /**
-     * @return array
+     * @return TwigFilter[]
      */
     public function getFilters()
     {
-        return array(
-            new \Twig_SimpleFilter('geshi', array($this, 'parseGeshi'), array('is_safe' => array('html'))),
-        );
+        return [
+            new TwigFilter('geshi', [$this, 'parseGeshi'], ['is_safe' => ['html']]),
+        ];
     }
 
     /**
-     * @param string $sContent
-     * @param string $sLanguage
+     * @param string $content
+     * @param string $language
+     * @param bool $useClasses
      * @return string
      */
-    public function parseGeshi($sContent, $sLanguage, $bUseClasses = false)
+    public function parseGeshi($content, $language, $useClasses = false)
     {
-        $oGeshi = new \GeSHi($sContent, $sLanguage);
-        if ($bUseClasses) {
-            $oGeshi->enable_classes();
+        $geshi = new GeSHi($content, $language);
+        if ($useClasses) {
+            $geshi->enable_classes();
         }
-        $sCode = $oGeshi->parse_code();
-        return $sCode;
+        $code = $geshi->parse_code();
+        return $code;
     }
 
     /**
-     * @return array
+     * @return array{}
      */
     public function getTokenParsers()
     {
-        return array();
+        return [];
     }
 
     /**

@@ -1,12 +1,11 @@
 // line 1
 ob_start();
-echo "<?php
+yield "<?php
 echo \"test\";  
 ?> ";
-$sSource = rtrim(ob_get_clean());
-$oGeshi = new \GeSHi($sSource, 'php');
-$oGeshi->enable_classes();
-$oGeshi->enable_line_numbers(GESHI_NORMAL_LINE_NUMBERS);
-$oGeshi->set_overall_class('1');
-$oGeshi->set_overall_id('1');
-echo $oGeshi->parse_code() . PHP_EOL;
+$geshi = new \GeSHi(rtrim(ob_get_clean()), 'php');
+$geshi->enable_classes();
+$geshi->enable_line_numbers(GESHI_NORMAL_LINE_NUMBERS);
+$geshi->set_overall_class('1');
+$geshi->set_overall_id('1');
+echo $geshi->parse_code() . PHP_EOL;
