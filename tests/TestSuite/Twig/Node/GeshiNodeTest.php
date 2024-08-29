@@ -1,69 +1,74 @@
 <?php
 
-namespace TestSuite\Twig\TokenParser;
+namespace TestSuite\Twig\Node;
 
-class GeshiNodeTest extends \Twig_Test_NodeTestCase
+use Twig\Node\GeshiNode;
+use Twig\Node\Node;
+use Twig\Node\TextNode;
+use Twig\Test\NodeTestCase;
+
+class GeshiNodeTest extends NodeTestCase
 {
     public function testConstructor()
     {
-        $aParams = array(
+        $attributes = [
             'language' => 'php',
             'line_numbers' => false,
             'use_classes' => false,
             'class' => false,
-            'id' => false
+            'id' => false,
+        ];
+
+        $test = '<?php' . PHP_EOL . 'echo "test";' . PHP_EOL . '?>';
+        $body = new Node([new TextNode($test, 1)]);
+        $node = new GeshiNode(
+            attributes: $attributes,
+            body: $body,
+            lineno: 1,
         );
-        $sTest = '<?php' . "\n" . 'echo "test";' . "\n" . '?>';
 
-        $oBody = new \Twig_Node(array(new \Twig_Node_Text($sTest, 1)));
-        $oNode = new \Twig\Node\GeshiNode($aParams, $oBody, 1, 'geshi');
-
-        $this->assertEquals($oBody, $oNode->getNode('body'));
-    }
-
-
-    /**
-     * Test that the generated code looks as expected
-     *
-     * @dataProvider getTests
-     */
-    public function testCompile($oNode, $source, $environment = null, $isPattern = false)
-    {
-        $source = str_replace("\r\n", "\n", $source);
-        parent::testCompile($oNode, $source, $environment, $isPattern);
+        $this->assertEquals($body, $node->getNode('body'));
     }
 
     public function getTests()
     {
-        $aTests = array();
+        $tests = [];
 
-        $aParams = array(
+        $test = '<?php' . PHP_EOL . 'echo "test";  ' . PHP_EOL . '?> ';
+        $body = new Node([new TextNode($test, 1)]);
+        $attributes = [
             'language' => 'php',
             'line_numbers' => true,
             'use_classes' => true,
             'class' => true,
-            'id' => true
+            'id' => true,
+        ];
+        $node = new GeshiNode(
+            attributes: $attributes,
+            body: $body,
+            lineno: 1,
         );
 
-        $oBody = new \Twig_Node(array(new \Twig_Node_Text('<?php' . "\n" . 'echo "test";  ' . "\n" . '?> ', 1)));
-        $oNode = new \Twig\Node\GeshiNode($aParams, $oBody, 1, 'geshi');
+        $tests['simple_text'] = [
+            $node,
+            file_get_contents(__DIR__ . '/../../../_files/expected/simple-text.html'),
+        ];
 
-        $aTests['simple_text'] = array(
-            $oNode,
-            str_replace("\r\n", "\n", file_get_contents(__DIR__ . '/../../../_files/expected/simple-text.html'))
+        $body = new Node([new TextNode($test, 1)]);
+        $node = new GeshiNode(
+            attributes: $attributes,
+            body: $body,
+            lineno: 1,
         );
-
-        $oBody = new \Twig_Node(array(new \Twig_Node_Text('<?php' . "\n" . 'echo "test";' . "\n" . '?>', 1)));
-        $oNode = new \Twig\Node\GeshiNode($aParams, $oBody, 1, 'geshi');
 
         $compiler = $this->getCompiler(null);
-        $compiler->compile($oNode);
+        $compiler->compile($node);
 
-        $aTests['text_with_leading_indent'] = array(
-            $oNode,
-            str_replace("\r\n", "\n", file_get_contents(__DIR__ . '/../../../_files/expected/text-with-leading-indent.html'))
-        );
+        $tests['text_with_leading_indent'] = [
+            $node,
+            file_get_contents(__DIR__ . '/../../../_files/expected/text-with-leading-indent.html'),
+        ];
 
-        return $aTests;
+        return $tests;
     }
 }

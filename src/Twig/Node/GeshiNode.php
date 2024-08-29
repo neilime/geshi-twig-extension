@@ -2,46 +2,52 @@
 
 namespace Twig\Node;
 
+use InvalidArgumentException;
+use Twig\Node\Node;
+use Twig\Compiler;
+
 /**
  * Represents a Geshi node, it parses content as Geshi.
  */
-class GeshiNode extends \Twig_Node
+class GeshiNode extends Node
 {
     /**
-     * Constructor
-     * @param array $aParams
-     * @param string $sBody
-     * @param int $iLine
-     * @param string $sTag
+     * @param array<string,string|bool> $attributes
+     * @param Node $body
+     * @param int $lineno
+     * @return void
+     * @throws InvalidArgumentException
      */
-    public function __construct($aParams, $sBody, $iLine, $sTag)
+    public function __construct(array $attributes, Node $body, int $lineno)
     {
-        parent::__construct(array('body' => $sBody), $aParams, $iLine, $sTag);
+        parent::__construct(
+            nodes: ['body' => $body],
+            attributes: $attributes,
+            lineno: $lineno,
+        );
     }
 
-    /**
-     * @param \Twig_Compiler $oCompiler
-     */
-    public function compile(\Twig_Compiler $oCompiler)
+    public function compile(Compiler $compiler)
     {
-        $oCompiler
-                ->addDebugInfo($this)
-                ->write('ob_start();' . "\n")
-                ->subcompile($this->getNode('body'))
-                ->write('$sSource = rtrim(ob_get_clean());' . "\n")
-                ->write('$oGeshi = new \GeSHi($sSource, \'' . $this->getAttribute('language') . '\');' . "\n");
+        $compiler
+            ->addDebugInfo($this)
+            ->write('ob_start();' . PHP_EOL)
+            ->subcompile($this->getNode('body'))
+            ->write('$geshi = new \GeSHi(rtrim(ob_get_clean()), \'' . $this->getAttribute('language') . '\');' . PHP_EOL);
+
         if ($this->getAttribute('use_classes')) {
-            $oCompiler->write('$oGeshi->enable_classes();' . "\n");
+            $compiler->write('$geshi->enable_classes();' . PHP_EOL);
         }
         if ($this->getAttribute('line_numbers')) {
-            $oCompiler->write('$oGeshi->enable_line_numbers(GESHI_NORMAL_LINE_NUMBERS);' . "\n");
+            $compiler->write('$geshi->enable_line_numbers(GESHI_NORMAL_LINE_NUMBERS);' . PHP_EOL);
         }
         if ($this->getAttribute('class')) {
-            $oCompiler->write('$oGeshi->set_overall_class(\'' . $this->getAttribute('class') . '\');' . "\n");
+            $compiler->write('$geshi->set_overall_class(\'' . $this->getAttribute('class') . '\');' . PHP_EOL);
         }
         if ($this->getAttribute('id')) {
-            $oCompiler->write('$oGeshi->set_overall_id(\'' . $this->getAttribute('id') . '\');' . "\n");
+            $compiler->write('$geshi->set_overall_id(\'' . $this->getAttribute('id') . '\');' . PHP_EOL);
         }
-        $oCompiler->write('echo $oGeshi->parse_code() . PHP_EOL;' . "\n");
+
+        $compiler->write('echo $geshi->parse_code() . PHP_EOL;' . PHP_EOL);
     }
 }

@@ -8,7 +8,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - php-versions: "7.3"
+          - php-versions: "8.1"
+          - php-versions: "8.2"
+          - php-versions: "8.3"
             stable: true
 
     runs-on: ubuntu-latest
@@ -20,7 +22,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          extensions: none,iconv,json,dom,xml,xmlwriter,tokenizer,simplexml
+          extensions: none,iconv,json,dom,xml,xmlwriter,tokenizer,simplexml,mbstring
           coverage: pcov
   
       - name: ♻️ Get composer cache directory
@@ -53,9 +55,9 @@ jobs:
         if: matrix.stable
         run: composer php-cs-fixer -- --format=checkstyle | tools/vendor/bin/cs2pr
 
-      # - name: 🔬 Static analysis
-      #   if: matrix.stable
-      #   run: composer stan -- --error-format=checkstyle | tools/vendor/bin/cs2pr
+      - name: 🔬 Static analysis
+        if: matrix.stable
+        run: composer stan -- --error-format=checkstyle | tools/vendor/bin/cs2pr
 
       - name: ♻️ Tests cache
         uses: actions/cache@v4
@@ -65,12 +67,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-tests-
       
-      # - name: 🧪 Test
-      #   run: composer test:ci
+      - name: 🧪 Test
+        run: composer test:ci
 
-      # - name: 📊 Upload coverage results to Codecov
-      #   if: matrix.stable
-      #   uses: codecov/codecov-action@v4
-      #   with:
-      #     file: ./build/logs/clover.xml
-      #     token: ${{ secrets.CODECOV_TOKEN }}
+      - name: 📊 Upload coverage results to Codecov
+        if: matrix.stable
+        uses: codecov/codecov-action@v4
+        with:
+          file: ./build/logs/clover.xml
+          token: ${{ secrets.CODECOV_TOKEN }}
