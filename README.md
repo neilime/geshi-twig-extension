@@ -10,7 +10,7 @@
 [![License](https://poser.pugx.org/neilime/geshi-twig-extension/license)](https://packagist.org/packages/neilime/geshi-twig-extension)
 [![Sponsor](https://img.shields.io/badge/%E2%9D%A4-Sponsor-ff69b4)](https://github.com/sponsors/neilime)
 
-📢 **Geshi Twig Extension** is a [Twig](https://twig.symfony.com) extension for [GeSHi - Generic Syntax Highlighter rendering](http://qbnz.com/highlighter/index.php).
+📢 **Geshi Twig Extension** is a [Twig](https://twig.symfony.com) extension for [GeSHi - Generic Syntax Highlighter rendering](https://github.com/GeSHi/geshi-1.0).
 
 ```twig
 {{ '<?php\necho \'test\';\n?>' | geshi('php') }}
