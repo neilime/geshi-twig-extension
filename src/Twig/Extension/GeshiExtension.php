@@ -14,7 +14,7 @@ class GeshiExtension extends AbstractExtension
     public function getFilters()
     {
         return [
-            new TwigFilter('geshi', [$this, 'parseGeshi'], ['is_safe' => ['html']]),
+            new TwigFilter('geshi', $this->parseGeshi(...), ['is_safe' => ['html']]),
         ];
     }
 
@@ -24,12 +24,14 @@ class GeshiExtension extends AbstractExtension
      * @param bool $useClasses
      * @return string
      */
-    public function parseGeshi($content, $language, $useClasses = false)
+    public function parseGeshi($content, $language, $useClasses = false): string
     {
         $geshi = new GeSHi($content, $language);
         if ($useClasses) {
             $geshi->enable_classes();
         }
+
+        /** @var string $code */
         $code = $geshi->parse_code();
         return $code;
     }

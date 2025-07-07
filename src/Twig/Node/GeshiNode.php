@@ -29,23 +29,53 @@ class GeshiNode extends Node
 
     public function compile(Compiler $compiler)
     {
+        $language = $this->getAttribute('language');
+        if (!is_string($language) || $language === '') {
+            throw new InvalidArgumentException('The "language" attribute must be a non-empty string.');
+        }
+
         $compiler
             ->addDebugInfo($this)
             ->write('ob_start();' . PHP_EOL)
             ->subcompile($this->getNode('body'))
-            ->write('$geshi = new \GeSHi(rtrim(ob_get_clean()), \'' . $this->getAttribute('language') . '\');' . PHP_EOL);
+            ->write(sprintf(
+                '$geshi = new \GeSHi(rtrim(ob_get_clean()), \'%s\');' . PHP_EOL,
+                $language
+            ));
+
 
         if ($this->getAttribute('use_classes')) {
             $compiler->write('$geshi->enable_classes();' . PHP_EOL);
         }
+
         if ($this->getAttribute('line_numbers')) {
             $compiler->write('$geshi->enable_line_numbers(GESHI_NORMAL_LINE_NUMBERS);' . PHP_EOL);
         }
-        if ($this->getAttribute('class')) {
-            $compiler->write('$geshi->set_overall_class(\'' . $this->getAttribute('class') . '\');' . PHP_EOL);
+
+        $classAttribute = $this->getAttribute('class');
+        if ($classAttribute) {
+            if (!is_string($classAttribute)) {
+                throw new InvalidArgumentException('The "class" attribute must be a string, got ' . gettype($classAttribute) . '.');
+            }
+            $compiler->write(
+                sprintf(
+                    '$geshi->set_overall_class(\'%s\');' . PHP_EOL,
+                    $classAttribute
+                )
+            );
         }
-        if ($this->getAttribute('id')) {
-            $compiler->write('$geshi->set_overall_id(\'' . $this->getAttribute('id') . '\');' . PHP_EOL);
+
+        $idAttribute = $this->getAttribute('id');
+        if ($idAttribute) {
+            if (!is_string($idAttribute)) {
+                throw new InvalidArgumentException('The "id" attribute must be a string, got ' . gettype($idAttribute) . '.');
+            }
+            $compiler->write(
+                sprintf(
+                    '$geshi->set_overall_id(\'%s\');' . PHP_EOL,
+                    $idAttribute
+                )
+            );
         }
 
         $compiler->write('echo $geshi->parse_code() . PHP_EOL;' . PHP_EOL);

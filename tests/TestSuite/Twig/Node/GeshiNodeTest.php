@@ -2,6 +2,7 @@
 
 namespace TestSuite\Twig\Node;
 
+use InvalidArgumentException;
 use Twig\Node\GeshiNode;
 use Twig\Node\Node;
 use Twig\Node\TextNode;
@@ -40,8 +41,8 @@ class GeshiNodeTest extends NodeTestCase
             'language' => 'php',
             'line_numbers' => true,
             'use_classes' => true,
-            'class' => true,
-            'id' => true,
+            'class' => "test-class",
+            'id' => "test-id",
         ];
         $node = new GeshiNode(
             attributes: $attributes,
@@ -70,5 +71,74 @@ class GeshiNodeTest extends NodeTestCase
         ];
 
         return $tests;
+    }
+
+    public function testCompileWithInvalidLanguage()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('The "language" attribute must be a non-empty string.');
+
+        $attributes = [
+            'language' => '',
+            'line_numbers' => false,
+            'use_classes' => false,
+            'class' => false,
+            'id' => false,
+        ];
+        $body = new Node([new TextNode('', 1)]);
+        $node = new GeshiNode(
+            attributes: $attributes,
+            body: $body,
+            lineno: 1,
+        );
+
+        $compiler = $this->getCompiler(null);
+        $compiler->compile($node);
+    }
+
+    public function testCompileWithInvalidClassAttribute()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('The "class" attribute must be a string, got boolean.');
+
+        $attributes = [
+            'language' => 'php',
+            'line_numbers' => false,
+            'use_classes' => false,
+            'class' => true,
+            'id' => false,
+        ];
+        $body = new Node([new TextNode('', 1)]);
+        $node = new GeshiNode(
+            attributes: $attributes,
+            body: $body,
+            lineno: 1,
+        );
+
+        $compiler = $this->getCompiler(null);
+        $compiler->compile($node);
+    }
+
+    public function testCompileWithInvalidIdAttribute()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('The "id" attribute must be a string, got boolean.');
+
+        $attributes = [
+            'language' => 'php',
+            'line_numbers' => false,
+            'use_classes' => false,
+            'class' => false,
+            'id' => true,
+        ];
+        $body = new Node([new TextNode('', 1)]);
+        $node = new GeshiNode(
+            attributes: $attributes,
+            body: $body,
+            lineno: 1,
+        );
+
+        $compiler = $this->getCompiler(null);
+        $compiler->compile($node);
     }
 }

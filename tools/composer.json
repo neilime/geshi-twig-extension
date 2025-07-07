@@ -1,12 +1,15 @@
 {
   "require": {
-    "friendsofphp/php-cs-fixer": "^3.4",
+    "friendsofphp/php-cs-fixer": "^3.80",
     "phpstan/extension-installer": "^1.4",
-    "phpstan/phpstan": "^1.12",
-    "phpstan/phpstan-phpunit": "^1.4",
-    "staabm/annotate-pull-request-from-checkstyle": "^1.8"
+    "phpstan/phpstan": "^2.1",
+    "phpstan/phpstan-phpunit": "^2.0",
+    "staabm/annotate-pull-request-from-checkstyle": "^1.8",
+    "rector/rector": "^2.1"
   },
   "config": {
+    "optimize-autoloader": true,
+    "sort-packages": true,
     "allow-plugins": {
       "phpstan/extension-installer": true
     }

@@ -1,7 +1,7 @@
 version: 2
 updates:
   - package-ecosystem: composer
-    versioning-strategy: widen
+    versioning-strategy: increase
     directories:
       - "/"
       - "/tools"
