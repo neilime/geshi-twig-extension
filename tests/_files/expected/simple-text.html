@@ -6,6 +6,6 @@ echo \"test\";
 $geshi = new \GeSHi(rtrim(ob_get_clean()), 'php');
 $geshi->enable_classes();
 $geshi->enable_line_numbers(GESHI_NORMAL_LINE_NUMBERS);
-$geshi->set_overall_class('1');
-$geshi->set_overall_id('1');
+$geshi->set_overall_class('test-class');
+$geshi->set_overall_id('test-id');
 echo $geshi->parse_code() . PHP_EOL;

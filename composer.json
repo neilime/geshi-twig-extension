@@ -36,7 +36,7 @@
     }
   },
   "require": {
-    "php": "~8.1.0 || ~8.2.0 || ~8.3.0",
+    "php": "^8.1",
     "twig/twig": "^3.12",
     "easybook/geshi": "^1.0"
   },
@@ -48,11 +48,18 @@
     "test:ci": "@test -d pcov.enabled=1 -d max_execution_time=0 --coverage-text --coverage-clover ./build/logs/clover.xml --coverage-html ./build/coverage/",
     "php-cs-fixer": "@php-cs-fixer:fix --dry-run",
     "php-cs-fixer:fix": "tools/vendor/bin/php-cs-fixer fix --show-progress=dots --diff --config=.php-cs-fixer.dist.php",
-    "stan": "tools/vendor/bin/phpstan analyse --level max src",
+    "rector": "@rector:fix --dry-run",
+    "rector:fix": "tools/vendor/bin/rector process src",
+    "phpstan": "tools/vendor/bin/phpstan analyse --level max src",
     "ci": [
       "@php-cs-fixer",
-      "@stan",
+      "@rector",
+      "@phpstan",
       "@test:ci"
     ]
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "sort-packages": true
   }
 }
