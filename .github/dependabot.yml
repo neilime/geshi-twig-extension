@@ -23,3 +23,15 @@ updates:
       github-actions-dependencies:
         patterns:
           - "*"
+
+  - package-ecosystem: "docker"
+    open-pull-requests-limit: 20
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: friday
+      time: "04:00"
+    groups:
+      docker-dependencies:
+        patterns:
+          - "*"
