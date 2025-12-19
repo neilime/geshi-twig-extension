@@ -32,12 +32,12 @@
 
 ## Documentation
 
-### [Installation](https://neilime.github.io/geshi-twig-extension/installation)
+### [Installation](./docs/installation.md)
 
-### [Usage](https://neilime.github.io/geshi-twig-extension/usage)
+### [Usage](./docs/usage.md)
+
+### [Development](./docs/development.md)
 
 ### [Code Coverage](https://codecov.io/gh/neilime/geshi-twig-extension)
 
 ### [PHP Doc](https://neilime.github.io/geshi-twig-extension/phpdoc)
-
-### [Development](https://neilime.github.io/geshi-twig-extension/development)
