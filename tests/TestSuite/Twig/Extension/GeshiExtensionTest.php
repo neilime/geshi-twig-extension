@@ -28,11 +28,11 @@ class GeshiExtensionTest extends TestCase
             ?>
         ';
         $this->assertEquals(
-            '<pre class="php">&nbsp;' . "\n" .
-                '            <span class="kw2">&lt;?php</span>' . "\n" .
-                '                <span class="kw1">echo</span> <span class="st_h">\'test\'</span><span class="sy0">;</span>' . "\n" .
-                '            <span class="sy1">?&gt;</span>' . "\n" .
-                '&nbsp;</pre>',
+            '<pre class="php">&nbsp;' . "\n"
+                . '            <span class="kw2">&lt;?php</span>' . "\n"
+                . '                <span class="kw1">echo</span> <span class="st_h">\'test\'</span><span class="sy0">;</span>' . "\n"
+                . '            <span class="sy1">?&gt;</span>' . "\n"
+                . '&nbsp;</pre>',
             $geshiExtension->parseGeshi($test, 'php', true)
         );
     }
@@ -52,11 +52,11 @@ class GeshiExtensionTest extends TestCase
 
         $template = $twig->load('index');
         $this->assertEquals(
-            '<pre class="php" style="font-family:monospace;">&nbsp;' . "\n" .
-                '            <span style="color: #000000; font-weight: bold;">&lt;?php</span>' . "\n" .
-                '                <span style="color: #b1b100;">echo</span> <span style="color: #0000ff;">\'test\'</span><span style="color: #339933;">;</span>' . "\n" .
-                '            <span style="color: #000000; font-weight: bold;">?&gt;</span>' . "\n" .
-                '&nbsp;</pre>',
+            '<pre class="php" style="font-family:monospace;">&nbsp;' . "\n"
+                . '            <span style="color: #000000; font-weight: bold;">&lt;?php</span>' . "\n"
+                . '                <span style="color: #b1b100;">echo</span> <span style="color: #0000ff;">\'test\'</span><span style="color: #339933;">;</span>' . "\n"
+                . '            <span style="color: #000000; font-weight: bold;">?&gt;</span>' . "\n"
+                . '&nbsp;</pre>',
             $template->render([])
         );
 
@@ -67,11 +67,11 @@ class GeshiExtensionTest extends TestCase
 
         $template = $twig->load('index');
         $this->assertEquals(
-            '<pre class="php" style="font-family:monospace;">&nbsp;' . "\n" .
-                '            <span style="color: #000000; font-weight: bold;">&lt;?php</span>' . "\n" .
-                '                <span style="color: #b1b100;">echo</span> <span style="color: #0000ff;">\'test\'</span><span style="color: #339933;">;</span>' . "\n" .
-                '            <span style="color: #000000; font-weight: bold;">?&gt;</span>' . "\n" .
-                '&nbsp;</pre>',
+            '<pre class="php" style="font-family:monospace;">&nbsp;' . "\n"
+                . '            <span style="color: #000000; font-weight: bold;">&lt;?php</span>' . "\n"
+                . '                <span style="color: #b1b100;">echo</span> <span style="color: #0000ff;">\'test\'</span><span style="color: #339933;">;</span>' . "\n"
+                . '            <span style="color: #000000; font-weight: bold;">?&gt;</span>' . "\n"
+                . '&nbsp;</pre>',
             $template->render(['content' => $test])
         );
     }
