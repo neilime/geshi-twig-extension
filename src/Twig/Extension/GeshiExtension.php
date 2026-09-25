@@ -11,7 +11,7 @@ class GeshiExtension extends AbstractExtension
     /**
      * @return TwigFilter[]
      */
-    public function getFilters()
+    public function getFilters(): array
     {
         return [
             new TwigFilter('geshi', $this->parseGeshi(...), ['is_safe' => ['html']]),

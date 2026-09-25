@@ -31,7 +31,7 @@ class GeshiNodeTest extends NodeTestCase
         $this->assertEquals($body, $node->getNode('body'));
     }
 
-    public function getTests()
+    public static function provideTests(): iterable
     {
         $tests = [];
 
@@ -61,9 +61,6 @@ class GeshiNodeTest extends NodeTestCase
             body: $body,
             lineno: 1,
         );
-
-        $compiler = $this->getCompiler(null);
-        $compiler->compile($node);
 
         $tests['text_with_leading_indent'] = [
             $node,
