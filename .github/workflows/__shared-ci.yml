@@ -8,7 +8,7 @@ on:
 permissions: {}
 jobs:
   checks:
-    uses: hoverkraft-tech/ci-github-php/.github/workflows/continuous-integration.yml@b81aa7b46f6b7a18ff1d9582c918cc1cc8296b98 # 2.0.0
+    uses: hoverkraft-tech/ci-github-php/.github/workflows/continuous-integration.yml@6d0964888074223db9c53b756d004846f3a1569e # 2.0.1
     permissions:
       contents: read
       id-token: write
@@ -20,6 +20,6 @@ jobs:
           "tests": "php <<'PHP'\n<?php\nrequire 'vendor/autoload.php';\n$twig = new Twig\\Environment(new Twig\\Loader\\ArrayLoader(['test' => '{{ code|geshi(\"php\") }}']));\n$twig->addExtension(new Twig\\Extension\\GeshiExtension());\n$html = $twig->render('test', ['code' => '<?php echo \"hello\";']);\nif (!str_contains($html, 'hello') || !str_contains($html, '<span')) {\n    throw new RuntimeException('The installed Twig filter must load GeSHi language definitions.');\n}\nPHP"
         }
   documentation:
-    uses: hoverkraft-tech/ci-github-php/.github/workflows/documentation.yml@b81aa7b46f6b7a18ff1d9582c918cc1cc8296b98 # 2.0.0
+    uses: hoverkraft-tech/ci-github-php/.github/workflows/documentation.yml@6d0964888074223db9c53b756d004846f3a1569e # 2.0.1
     permissions:
       contents: read
